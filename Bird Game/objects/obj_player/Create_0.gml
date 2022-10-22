@@ -1,18 +1,23 @@
 /// @desc Init variables
 
 // Speeds
-spd = 2;
-jump_spd = 6;
+spd = 1.6;
+jump_spd = 5;
 hsp = 0;
 vsp = 0;
 vsp_max = 5.5;
 
 // Environment
-grav = 0.275;
+grav = 0.19;
 fric = 0.3;
 acc = 0.3;
 
 dir = 1;
+
+on_ground_buffer = 0;
+on_ground_buffer_max = 8;
+jump_buffer = 0;
+jump_buffer_max = 8;
 
 float_grav = 0.2;
 float_vsp_max = 0.75;

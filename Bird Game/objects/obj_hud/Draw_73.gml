@@ -1,20 +1,10 @@
 /// @desc
 
-var w = CW, h = 8;
-var x1 = CX, y1 = CY+CH-h;
+var w = CW/2, h = 8;
+var x1 = CX+4, y1 = CY+8;
 var x2 = x1+w, y2 = y1+h;
 
-
-/*
-draw_set_color(c_black);
-
-draw_rectangle(x1, y1, x2, y2, 0);
-
-draw_set_color(c_white);
-
-*/
-
-y1=CY+8;
+draw_sprite_stretched(spr_hb_bg, 0, x1, y1, w, h);
 
 var h_x = 8;
 var h_y = 0;

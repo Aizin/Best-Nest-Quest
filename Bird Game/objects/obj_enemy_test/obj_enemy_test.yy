@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "obj_enemy_test",
   "spriteId": {
-    "name": "spr_enemy_test",
-    "path": "sprites/spr_enemy_test/spr_enemy_test.yy",
+    "name": "spr_enemy_gator",
+    "path": "sprites/spr_enemy_gator/spr_enemy_gator.yy",
   },
   "solid": false,
   "visible": true,

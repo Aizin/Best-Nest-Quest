@@ -16,23 +16,36 @@ if (freeze_input == 0) {
 	}
 }
 
-// Determine if we are on ground
-on_ground = place_meeting(x, y+1, obj_wall);
+
 
 var float = false;
 
-if (on_ground) {
+// Jump
+if (global.key_jump_pressed) {
+	jump_buffer = jump_buffer_max;
+}
+if ((global.key_jump_pressed && freeze_input == 0 && on_ground_buffer) || (jump_buffer > 0 && on_ground)) {
+	vsp = -jump_spd;
 	
-	// Jump
-	if (global.key_jump_pressed && freeze_input == 0) {
-		vsp = -jump_spd;
-	}
+	on_ground_buffer = 0;
+	jump_buffer = 0;
+}
+
+// Determine if we are on ground
+on_ground = place_meeting(x, y+1, obj_wall);
+
+jump_buffer = approach(jump_buffer, 0, 1);
+
+if (on_ground) {
+	on_ground_buffer = on_ground_buffer_max;
 	
 	// Reset state
 	float_counter = 0;
 	spin_ready = false;
 	spin = false;
 } else {
+	
+	on_ground_buffer = approach(on_ground_buffer, 0, 1);
 	
 	// Determine if we should float
 	float = !spin && global.key_jump && vsp > 0;
@@ -45,7 +58,7 @@ if (on_ground) {
 	vsp = approach(vsp, vm, g);
 	
 	if (!spin) {
-		if (global.key_jump_released && vsp < 0) {
+		if (!global.key_jump && vsp < 0) {
 			vsp = max(vsp, -jump_spd/4);
 		}
 		
@@ -143,3 +156,6 @@ if (on_ground) {
 if (y > room_height+48 && alarm[0] == -1) {
 	alarm_set(0, 5);	
 }
+
+var room_inst = instance_place(x,y,obj_room);
+global.cur_room = room_inst;

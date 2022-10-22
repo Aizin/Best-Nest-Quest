@@ -3,6 +3,7 @@
 randomize();
 
 global.debug = true;
+global.cur_room = noone;
 
 function get_input() {
 	global.key_left = keyboard_check(vk_left);

@@ -29,5 +29,7 @@ function damage(str=1) {
 	}
 }
 
+damage_sprite = {}
+
 flash_timer = 15;
 flash_color = c_red;
