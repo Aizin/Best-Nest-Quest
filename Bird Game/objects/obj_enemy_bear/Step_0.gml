@@ -2,6 +2,12 @@
 
 image_xscale = dir;
 
+//Check if grounded
+groundCheck();
+
+//do gravity
+fall(delta_time);
+
 //Switch on object state
 switch(state){
 	case States.sleeping:
@@ -9,11 +15,11 @@ switch(state){
 		break;
 		
 	case States.waking:
-		wake();
+		wake(delta_time);
 		break;
 		
 	case States.rolling:
-		roll();
+		roll(delta_time);
 		break;
 	
 	default:
