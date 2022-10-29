@@ -1,6 +1,6 @@
 /// @desc
 
-image_xscale = dir;
+image_xscale = xdir;
 
 //Check if grounded
 groundCheck();

@@ -18,10 +18,13 @@ damage_sprite = {
 	spr_enemy_bear: spr_enemy_bear_roll,
 }
 
-xdir = 1;
+xdir = x_direction;
 spd = 0.6;
 grav = 0.19;
 vsp = 0;
+spd = 1.6;
+hsp = 0;
+
 vsp_max = 5.5;
 
 cooldown = 0;
@@ -35,6 +38,7 @@ function sleep()
 	if(checkx != 0)
 	{
 		xdir = checkx;
+		state = States.waking;
 	}
 }
 
@@ -43,13 +47,22 @@ function wake(deltaTime)
 	wakingCurrent+= deltaTime;
 	if(wakingCurrent > wakingTime)
 	{
-		//instance_destroy();
-		instance_destroy();
+		
+		state = States.rolling;
 	}
 }
 
 function roll(deltaTime)
 {
+	//check if wall in path
+	if(collision_line(x+16*xdir, y+28, x+10*xdir, y+28,obj_wall,false,true)){
+			//state = States.sleeping;
+			xdir*=-1;
+		}
+	else
+	{
+		x += xdir*spd*deltaTime/10000;	
+	}
 	
 }
 
@@ -65,12 +78,11 @@ function checkForPlayer()
 {
 	//check left
 		if(collision_line(x-16, y+24, x-176, y+24,obj_player,false,true)){
-			state = States.waking;
 			return -1;
 		}
 		//check right
 		else if(collision_line(x, y+24, x+160, y+24,obj_player,false,true)){
-			state = States.waking;
+			
 			return 1;
 		}
 		else{
