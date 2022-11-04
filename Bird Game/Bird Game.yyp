@@ -14,6 +14,7 @@
     {"id":{"name":"spr_player_spinready","path":"sprites/spr_player_spinready/spr_player_spinready.yy",},"order":5,},
     {"id":{"name":"scr_file","path":"scripts/scr_file/scr_file.yy",},"order":2,},
     {"id":{"name":"spr_forest_bg_2","path":"sprites/spr_forest_bg_2/spr_forest_bg_2.yy",},"order":2,},
+    {"id":{"name":"spr_enemy_bear_alert","path":"sprites/spr_enemy_bear_alert/spr_enemy_bear_alert.yy",},"order":2,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
     {"id":{"name":"obj_enemy_parent","path":"objects/obj_enemy_parent/obj_enemy_parent.yy",},"order":0,},
     {"id":{"name":"obj_sparkle","path":"objects/obj_sparkle/obj_sparkle.yy",},"order":4,},

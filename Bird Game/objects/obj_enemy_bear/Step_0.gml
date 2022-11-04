@@ -21,11 +21,14 @@ switch(state){
 	case States.rolling:
 		roll(delta_time);
 		break;
-	
+	case States.stunned:
+		stunned(delta_time);
+		break;
 	default:
 		break;
 	
 }
+
 
 /*
 Gator code
