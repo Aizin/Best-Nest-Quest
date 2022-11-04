@@ -23,9 +23,20 @@ with (follow) {
 		//	lerp(ch, global.CH_default*global.cur_room.view_scale, 0.1));
 	}
 }
+
+var cx_goal = follow.x - CW/2;
+var cy_goal = follow.y - CH/2;
+
+if (global.transition_scroll_lock) {
+	cx = approach(cx, cx_goal, 8);
 	
-cx = lerp(cx, follow.x - CW/2, 0.085);
-cy = lerp(cy, follow.y - CH/2, 0.085);
+	if (cx == cx_goal) {
+		global.transition_scroll_lock = false;
+	}
+} else {
+	cx = lerp(cx, cx_goal, 0.085);
+	cy = lerp(cy, cy_goal, 0.085);
+}
 
 cx += shake_x;
 cy += shake_y;
@@ -39,6 +50,3 @@ var yy = cy;
 // Set camera pos
 camera_set_view_pos(CAM, xx, yy);
 
-layer_x("Background_0", cx/2);
-layer_x("Background_1", cx/3);
-layer_x("Background_2", cx/5);
