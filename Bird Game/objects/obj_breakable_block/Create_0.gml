@@ -9,12 +9,8 @@ wall = instance_create_depth(x, y, 0, obj_wall);
 state = 0;
 state_max = image_number;
 
-function damage() {
-	if (invincible) return;
-	
+function spin_hit() {
 	state = approach(state, state_max, 1);
-	
-	set_invincible();
 	
 	if (state == state_max) {
 		instance_destroy();
@@ -26,12 +22,4 @@ function damage() {
 	} else {
 		image_index = state;
 	}
-}
-
-function peck_hit() {
-	damage();
-}
-
-function spin_hit() {
-	damage();
 }

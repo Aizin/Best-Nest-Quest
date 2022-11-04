@@ -5,8 +5,6 @@ randomize();
 global.debug = true;
 global.cur_room = noone;
 
-global.transition_scroll_lock = false;
-
 function get_input() {
 	global.key_left = keyboard_check(vk_left);
 	global.key_right = keyboard_check(vk_right);

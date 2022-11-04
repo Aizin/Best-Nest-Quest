@@ -1,1 +1,1 @@
-room_goto(rm_game_sky);
+room_goto(rm_game);
