@@ -1,0 +1,6 @@
+/// @desc
+
+collected = false;
+
+
+

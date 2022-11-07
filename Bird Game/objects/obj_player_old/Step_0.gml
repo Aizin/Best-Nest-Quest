@@ -77,18 +77,24 @@ if (on_ground) {
 	}
 }
 
-var spinnable_inst = instance_place(x, y+vsp+8, obj_spinnable);
-if (instance_exists(spinnable_inst)) {
-	if (spin && spin_cooldown == 0) {
+if (spin && spin_cooldown == 0) {
+	var spinnable_inst = instance_place(x, y+vsp+8, obj_spinnable);
+	if (instance_exists(spinnable_inst)) {
+	
 		spin_cooldown = 10;
 		
 		vsp = -jump_spd/(1.1 + 0.4 * !global.key_jump);
 		spinnable_inst.spin_hit();
-	} else {
+	} 
+} else {
+	var spinnable_inst = instance_place(x, y, obj_spinnable);
+	if (instance_exists(spinnable_inst)) {
 		spinnable_inst.on_touch(self);
 	}
-		
+	
 }
+
+
 
 spin_cooldown = approach(spin_cooldown, 0, 1);
 

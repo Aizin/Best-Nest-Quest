@@ -4,10 +4,22 @@ state = 0;
 
 alpha = 0;
 
-alpha_in = 12;
-alpha_stay = 5;
-alpha_out = 12;
+global.player_frozen = true;
+
+
+step_size = 16;
+step_timer_stay = 20;
+
+timer_step = 4;
+timer = 0;
+
+finish_early = false;
+
+step = 0;
+step_max = ceil(CW / step_size);
 
 room_to = -1;
 
+depth -= 1000;
 
+transition_type = 0;
