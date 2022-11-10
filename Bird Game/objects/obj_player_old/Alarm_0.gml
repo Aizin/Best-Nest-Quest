@@ -1,5 +1,5 @@
 /// @desc
 
-instance_create_layer(0,0,"GUI",obj_transition);
+instance_create_depth(0,0,-99999,obj_transition);
 
 instance_destroy();

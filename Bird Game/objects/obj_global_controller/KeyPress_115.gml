@@ -1,6 +1,0 @@
-/// @desc
-
-toggle_fullscreen();
-
-
-

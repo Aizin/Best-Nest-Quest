@@ -28,7 +28,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Camera",
-    "path": "folders/Objects/Game/Camera.yy",
+    "name": "Game",
+    "path": "folders/Objects/Game.yy",
   },
 }

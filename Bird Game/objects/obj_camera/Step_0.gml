@@ -1,4 +1,5 @@
 /// @desc
+
 if (!instance_exists(follow)) exit;
 
 var cx = CX;
@@ -6,14 +7,21 @@ var cy = CY;
 var cw = CW;
 var ch = CH;
 
-follow.step();
-
-if (instance_exists(global.cur_room) && !init) {
-	init = true;
-	camera_set_view_pos(CAM, global.cur_room.bbox_left, global.cur_room.bbox_top);
-	cx = CX;
-	cy = CY;
-	return;	
+with (follow) {
+	if (!instance_exists(follow)) exit;
+	x = follow.x;
+	y = follow.y;
+		
+	if (instance_exists(global.cur_room)) {
+		//if (global.camera_lock) {
+			x = clamp(x, global.cur_room.bbox_left + CW/2, global.cur_room.bbox_right - CW/2);
+			y = clamp(y, global.cur_room.bbox_top + CH/2, global.cur_room.bbox_bottom - CH/2);
+		//}
+		
+		//camera_set_view_size(CAM, 
+		//	lerp(cw, global.CW_default*global.cur_room.view_scale, 0.1), 
+		//	lerp(ch, global.CH_default*global.cur_room.view_scale, 0.1));
+	}
 }
 
 var cx_goal = follow.x - CW/2;
@@ -26,8 +34,8 @@ if (global.transition_scroll_lock) {
 		global.transition_scroll_lock = false;
 	}
 } else {
-	cx = lerp(cx, cx_goal, 0.1);
-	cy = lerp(cy, cy_goal, 0.1);
+	cx = lerp(cx, cx_goal, 0.085);
+	cy = lerp(cy, cy_goal, 0.085);
 }
 
 cx += shake_x;
@@ -41,3 +49,4 @@ var yy = cy;
 
 // Set camera pos
 camera_set_view_pos(CAM, xx, yy);
+
