@@ -2,3 +2,4 @@
 
 get_input();
 
+global_timer ++;

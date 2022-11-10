@@ -1,30 +1,30 @@
 /// @desc
 
+timer ++;
+
+if (timer % timer_step != 0) return;
 
 switch (state) {
 	case 0:
-		alpha = approach(alpha, 1, 1/alpha_in);
+		step = approach(step, step_max, 1);
 		
-		if (alpha == 1) {
+		if (step == step_max) {
 			state = 1;
+			step = 0;
 		}
 		break;
 	
 	case 1:
 		if (alarm[0] == -1) {
-			if (room_to == -1) {
-				room_restart();
-			} else {
-				room_goto(room_to);
-			}
-			alarm_set(0, alpha_stay);
+			
+			alarm_set(0, step_timer_stay);
 		}
 		break;
 	
 	case 2:
-		alpha = approach(alpha, 0, 1/alpha_out);
+		step = approach(step, step_max, 1);
 		
-		if (alpha == 0) {
+		if (step == step_max) {
 			instance_destroy();
 		}
 		break;

@@ -1,11 +1,14 @@
 /// @desc
 
-spd = 1.1;
+spd = random_range(0.8,1);
 hsp = choose(1, -1) * spd;
-vsp = -random_range(1.6,2.5);
+vsp = -random_range(1.8,2.5);
 
-grav = 0.05;
+grav = random_range(0.05, 0.065);
 
-cooldown = 20;
+cooldown = 40;
 
 image_speed = sign(hsp);
+
+in_wall = false;
+out_wall = false;

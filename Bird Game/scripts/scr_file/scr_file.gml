@@ -1,8 +1,19 @@
 
 #region Config
-function interpret_file(d) {}
+function interpret_file(d) {
+	global.save_data = d;
+}
 
-global.save_data = {};
+global.save_data = {
+	version: "0.01",
+	volume_music: 0.5,
+	volume_sound: 0.5,
+	respawn_x: -1,
+	respawn_y: -1,
+};
+
+global.save_file_name = "save0.txt";
+
 #endregion
 
 #region Functions
@@ -56,7 +67,8 @@ function get_file_data(filename) {
 	return json_parse(json);
 }
 
-function save_game(filename) {
+function save_game(filename=global.save_file_name) {
+	show_debug_message("File Saved");
 	save_file(filename, global.save_data);
 }
 
