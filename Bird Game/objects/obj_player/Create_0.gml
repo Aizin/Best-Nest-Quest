@@ -73,6 +73,21 @@ function process_movement() {
 			hsp = approach(hsp, 0, fric);
 		}
 	}
+	//Start cloud platform here
+	var _movingPlatform = instance_place(x, y + max(1, vsp), oPlatformMoving);
+	if(_movingPlatform && bbox_bottom <= _movingPlatform.bbox_top){
+		on_ground = true;
+		if(vsp > 0){
+			while (!place_meeting(x, y +sign(vsp), oPlatformMoving)){
+				y += sign(vsp);
+			}
+			vsp = 0;	
+		}
+		x += _movingPlatform.hsp;
+		y += _movingPlatform.vsp; // issue here
+	
+	}
+	//End cloud platform here
 
 	
 

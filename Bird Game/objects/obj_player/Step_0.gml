@@ -8,6 +8,7 @@ get_input();
 process_movement();
 process_animation();
 
+
 var room_inst = instance_place(x,y,obj_room);
 
 if (!instance_exists(room_inst)) {
