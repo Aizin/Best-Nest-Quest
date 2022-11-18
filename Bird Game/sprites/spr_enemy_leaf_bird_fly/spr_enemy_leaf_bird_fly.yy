@@ -71,6 +71,6 @@
   "nineSlice": null,
   "parent": {
     "name": "Leaf Bird",
-    "path": "folders/Sprites/Enemies/Leaf Bird.yy",
+    "path": "folders/Sprites/Enemies/Forest/Leaf Bird.yy",
   },
 }

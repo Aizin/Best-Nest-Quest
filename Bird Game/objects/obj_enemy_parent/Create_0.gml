@@ -57,14 +57,7 @@ function damage(str=1) {
 	// Determine if enemy is dead
 	if (hp == 0) {
 		
-		// Make particle
-		instance_create_depth(x,y,depth,obj_sprite_animation,{sprite_index: spr_smoke_poof})
-		
-		// Destroy self
-		instance_destroy();
-		
-		// Play death sound
-		play_sound(die_sound);
+		die();
 		
 		// Enemy is not alive
 		return false;
@@ -76,6 +69,17 @@ function damage(str=1) {
 		// Enemy is still alive
 		return true;
 	}
+}
+
+function die() {
+	// Make particle
+	instance_create_depth(x,y,depth,obj_sprite_animation,{sprite_index: spr_smoke_poof})
+		
+	// Destroy self
+	instance_destroy();
+		
+	// Play death sound
+	play_sound(die_sound);
 }
 
 

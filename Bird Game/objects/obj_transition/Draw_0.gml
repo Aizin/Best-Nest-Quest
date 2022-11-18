@@ -10,6 +10,8 @@ y1 = 0;
 y2 = CH;
 x2 = CW;
 
+
+
 switch (transition_type) {
 	case 0:
 		if (state == 0) {
@@ -20,14 +22,18 @@ switch (transition_type) {
 			x1 = -step_size * step;
 			x2 = x1 + CW;
 		}
+		
 
-		draw_rectangle(CX + x1, CY + y1, CX + x2, CY + y2, 0);
+		draw_rectangle(xpos() + x1, ypos() + y1, xpos() + x2, ypos() + y2, 0);
+		
 		break;
 	
 	case 1:
 		draw_sprite_stretched(spr_transition_square, min(floor(timer/30), sprite_get_number(spr_transition_square)-1), CX, CY, CW, CH);
 		break;
 }
+
+
 
 draw_set_color(c_white);
 

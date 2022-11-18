@@ -2,6 +2,8 @@
 
 timer ++;
 
+
+
 if (timer % timer_step != 0) return;
 
 switch (state) {

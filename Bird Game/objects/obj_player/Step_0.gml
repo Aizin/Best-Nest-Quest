@@ -1,23 +1,24 @@
 /// @desc
 
-if (global.transition_scroll_lock || global.player_frozen) return;
+if (global.transition_scroll_lock) {
+	transition_progress ++;
+	
+	if (transition_progress < 16) {
+		x += sign(hsp);
+	}
+	return;
+}
+
+transition_progress = 0;
+old_room = -1;
+
+if (global.player_frozen) return;
 
 
 process_movement();
 process_animation();
 
-var room_inst = instance_place(x,y,obj_room);
 
-if (!instance_exists(room_inst)) {
-	if (alarm[0] == -1) {
-		alarm_set(0, 15);
-	}
-} else {
-	if (room_inst != global.cur_room) {
-		global.transition_scroll_lock = true;
-	}
-	global.cur_room = room_inst;
-}
 
 if (place_meeting(x, y, obj_death_zone)) {
 	die();
@@ -48,3 +49,6 @@ if (global.debug) {
 	
 }
 
+
+global.player_x = x;
+global.player_y = y;

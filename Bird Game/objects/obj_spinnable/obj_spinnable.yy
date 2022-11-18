@@ -27,7 +27,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Parents",
-    "path": "folders/Objects/Game/Game Blocks/Parents.yy",
+    "name": "Enemies",
+    "path": "folders/Objects/Game/Enemies.yy",
   },
 }

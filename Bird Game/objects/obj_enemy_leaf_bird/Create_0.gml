@@ -3,7 +3,7 @@
 // Inherit the parent event
 event_inherited();
 
-set_hp(2);
+set_hp(1);
 
 state = 0; // (0, 1) | (float, target)
 

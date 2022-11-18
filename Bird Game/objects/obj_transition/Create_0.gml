@@ -23,3 +23,12 @@ room_to = -1;
 depth -= 1000;
 
 transition_type = 0;
+
+function xpos() {return CX};
+function ypos() {return CY};
+
+function set_step_size(v) {
+	step_size = v;
+	step_max = ceil(CW / step_size);
+
+}

@@ -46,6 +46,15 @@ y += vsp;
 
 if (place_meeting(x, y, obj_player) && cooldown == 0) {
 	instance_destroy();
-	obj_player.heal(1);
+	with (obj_player) {
+		heal(1);
+		alarm_set(2, 5);
+	}
 	
+}
+
+timer ++;
+
+if (timer % 10 == 0) {
+	instance_create_depth(x, y, depth-10, obj_sparkle)
 }

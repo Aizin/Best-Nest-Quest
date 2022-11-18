@@ -66,6 +66,9 @@ invincible_timer = 145;
 knockback_vsp = 4;
 knockback_hsp = 4;
 
+transition_progress = 0;
+old_room = noone;
+
 // ##################################################
 #endregion
 // ##################################################
@@ -156,8 +159,7 @@ function process_movement() {
 	
 	
 	var v_wall = instance_place(x, y+1, obj_wall);
-	if (instance_exists(v_wall) && (!v_wall.spinnable || (v_wall.spinnable && (!spinning)))) {
-		
+	if (instance_exists(v_wall) && /**/v_wall.hsp == 0/**/ && (!v_wall.spinnable || (v_wall.spinnable && (!spinning)))) {
 		if (!on_ground) {
 			xscale = 1.5;
 			yscale = 0.5;
@@ -219,7 +221,7 @@ function process_movement() {
 		jump_buffer = approach(jump_buffer, 0, 1);
 	}
 	
-	if (global.key_jump_pressed && jump_buffer != 0 && freeze_input == 0) {
+	if (global.key_jump_pressed && jump_buffer != 0 && freeze_input == 0 && !peck_wall) {
 		
 		play_sound(snd_player_jump);
 		
@@ -374,14 +376,20 @@ function process_pecking() {
 
 function process_collision() {
 	var hsp_final = hsp + hsp_sustained_knockback + hsp_fade_knockback;
-	if (place_meeting(x+hsp_final, y, obj_wall)) {
-		while (!place_meeting(x+sign(hsp_final), y, obj_wall)) {
-			x += sign(hsp_final);
+	var h_wall = instance_place(x+hsp_final, y, obj_wall);
+	if (instance_exists(h_wall)) {
+		
+		if (h_wall.hsp != 0 && sign(x - h_wall.x) == sign(h_wall.hsp)) {
+				hsp_final = h_wall.hsp;
+		} else {
+			while (!place_meeting(x+sign(hsp_final), y, obj_wall)) {
+				x += sign(hsp_final);
+			}
+			hsp_sustained_knockback = 0;
+			hsp_fade_knockback = 0;
+			hsp = 0;
+			hsp_final = 0;
 		}
-		hsp_sustained_knockback = 0;
-		hsp_fade_knockback = 0;
-		hsp = 0;
-		hsp_final = 0;
 	}
 	
 	var movingwall_h_inst = instance_place(x, y+1, obj_movingwall_h); //check if movingwall below player
@@ -410,7 +418,7 @@ function process_collision() {
 
 	var v_wall = instance_place(x, y+vsp, obj_wall);
 		
-	if (instance_exists(v_wall)) {
+	if (instance_exists(v_wall) && /**/v_wall.hsp == 0/**/) {
 		
 		var collide = true;
 		

@@ -12,3 +12,5 @@ image_speed = sign(hsp);
 
 in_wall = false;
 out_wall = false;
+
+timer = 0;

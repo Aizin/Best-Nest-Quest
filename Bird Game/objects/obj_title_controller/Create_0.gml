@@ -19,15 +19,15 @@ function start_game() {
 	save_game();
 	
 	with (instance_create_depth(0,0,-9999,obj_transition)) {
-		room_to = rm_game_forest;
+		room_to = rm_game_sky;
 		
 		music_set_gain(global.cur_music, 0, 1500);
 		
-		//if (global.debug) {
-		//	step_size = 64;
-		//	step_timer_stay = 1;
-		//	timer_step = 1;
-		//}
+		if (global.debug) {
+			set_step_size(64);
+			step_timer_stay = 1;
+			timer_step = 1;
+		}
 	}
 }
 
