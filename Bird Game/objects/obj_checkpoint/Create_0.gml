@@ -2,5 +2,6 @@
 
 collected = false;
 
+index = 0;
 
 

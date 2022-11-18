@@ -24,6 +24,14 @@ if (global.transition_scroll_lock) {
 	
 	if (cx == cx_goal) {
 		global.transition_scroll_lock = false;
+		
+		if (instance_exists(obj_player)) {
+			with (obj_player) {
+				if (instance_exists(old_room)) {
+					old_room.enter_room();
+				}
+			}
+		}
 	}
 } else {
 	cx = lerp(cx, cx_goal, 0.1);
@@ -41,3 +49,4 @@ var yy = cy;
 
 // Set camera pos
 camera_set_view_pos(CAM, xx, yy);
+

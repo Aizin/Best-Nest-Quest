@@ -12,3 +12,5 @@ register_layer(spr_bg_sky_clouds_4, 1-0.09);
 register_layer(spr_bg_sky_clouds_3, 1-0.06);
 register_layer(spr_bg_sky_clouds_2, 1-0.03);
 register_layer(spr_bg_sky_clouds_1, 1);
+
+play_music(snd_mus_sky);

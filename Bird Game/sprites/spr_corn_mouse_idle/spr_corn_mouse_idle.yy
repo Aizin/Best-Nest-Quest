@@ -71,6 +71,6 @@
   "nineSlice": null,
   "parent": {
     "name": "Corn Mouse",
-    "path": "folders/Sprites/Enemies/Corn Mouse.yy",
+    "path": "folders/Sprites/Enemies/Forest/Corn Mouse.yy",
   },
 }

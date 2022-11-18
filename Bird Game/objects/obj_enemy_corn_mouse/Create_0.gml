@@ -3,98 +3,6 @@
 // Inherit the parent event
 event_inherited();
 
-/*
-function step() {
-	// Face the correct direction
-	image_xscale = dir;
-	
-	// Make sure the player exists, otherwise go to idle state
-	if (!instance_exists(target)) state = 0;
-	
-	// Idle state
-	if (state == 0) {
-		
-		// Reset speed
-		hsp = 0;
-		vsp = 0;
-		
-		// Turn around
-		if (alarm[1] == -1) {
-			alarm_set(1, irandom_range(30, 120));
-		}
-		
-		// Sense if the player is within range
-		if (instance_exists(target)) {
-			
-			// Get distance to player
-			var dist = target.x - x;
-			
-			// Player is within range
-			if (abs(dist) < range && sign(dist) == dir && sprite_index == spr_corn_mouse_idle && hit_player == 0) {
-				
-				// Go to jumping state
-				state = 1;
-				
-				// Set speed
-				hsp = spd * dir * random_range(0.95, 1.05);
-				vsp = -jump_spd;
-				
-				// Set sprite
-				sprite_index = spr_corn_mouse_jump;
-				
-				// Wait before sensing if touching the ground again
-				cooldown = 10;
-			}
-		}
-		
-		// Reduce timer
-		hit_player = approach(hit_player, 0, 1);
-	} else {
-	
-		// Determine if grounded
-		if (place_meeting(x, y+1, obj_wall) && cooldown == 0) {
-			
-			// Goto idle state
-			state = 0;
-			
-			// Change to landing sprite
-			sprite_index = spr_corn_mouse_land;
-		} else {
-			
-			// Apply gravity
-			vsp += grav;
-		}
-	}
-	
-	// Reduce timer
-	cooldown = approach(cooldown, 0, 1);
-
-	// Horizontal collision
-	var hsp_final = hsp;
-	if (place_meeting(x+hsp_final, y, obj_wall)) {
-		while (!place_meeting(x+sign(hsp_final), y, obj_wall)) {
-			x += sign(hsp_final);
-		}
-		dir *= -1;
-		hsp *= -1;
-	}
-	x += hsp_final;
-	
-	// Vertical collision
-	var vsp_final = vsp;
-	if (place_meeting(x, y+vsp_final, obj_wall)) {
-		while (!place_meeting(x, y+sign(vsp_final), obj_wall)) {
-			y += sign(vsp_final);
-		}
-		hsp = 0;
-		vsp = 0;
-		vsp_final = 0;
-	}
-	y += vsp_final;
-
-}
-*/
-
 function on_peck() {
 	
 	// Jump away
@@ -212,7 +120,7 @@ function change_state(s) {
 
 
 
-set_hp(3);
+set_hp(2);
 
 state = 0;
 

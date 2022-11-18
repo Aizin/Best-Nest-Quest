@@ -2,12 +2,15 @@
 
 randomize();
 
-global.debug = false;
+global.debug = true;
 global.cur_room = noone;
 
 global.transition_scroll_lock = false;
 
 global.player_frozen = false;
+
+global.player_x = 0;
+global.player_y = 0;
 
 draw_set_font(fnt_main);
 
@@ -21,6 +24,8 @@ global_timer = 0;
 
 #macro DEVICE_INDEX 0
 gp_axis_pressed_cooldown = 15;
+
+global.checkpoint_index = 0;
 
 function get_input() {
 	global.key_right = keyboard_check(vk_right);
@@ -73,8 +78,8 @@ function get_input() {
 }
 get_input();
 
-global.hp_max = 5;
-global.hp = 5;
+global.hp_max = 8;
+global.hp = 8;
 
 #macro CAM view_camera[0]
 #macro CX camera_get_view_x(CAM)

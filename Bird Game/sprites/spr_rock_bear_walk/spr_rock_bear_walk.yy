@@ -75,6 +75,6 @@
   "nineSlice": null,
   "parent": {
     "name": "Rock Bear",
-    "path": "folders/Sprites/Enemies/Rock Bear.yy",
+    "path": "folders/Sprites/Enemies/Forest/Rock Bear.yy",
   },
 }

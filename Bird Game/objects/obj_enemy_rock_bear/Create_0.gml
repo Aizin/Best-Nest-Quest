@@ -3,7 +3,7 @@
 // Inherit the parent event
 event_inherited();
 
-set_hp(5);
+set_hp(4);
 
 dir = -1;
 
@@ -42,7 +42,6 @@ function step() {
 			if (!place_meeting(x + dir * sprite_width/2, y + 16, obj_wall) && vsp == 0) {
 				change_state(0);
 				dir *= -1;
-				log("no wall");
 			}
 			break;
 			
