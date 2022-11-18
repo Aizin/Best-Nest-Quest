@@ -30,6 +30,8 @@ spinning = false;
 peck = false;
 peck_wall = false;
 
+xdig_in = 10;
+
 on_ground = true;
 
 dir = 1
@@ -303,6 +305,8 @@ function process_pecking() {
 				
 				//var wall_inst = instance_place(x+16*dir, y, obj_wall);
 				var wall_inst = collision_rectangle(x+16*dir, bbox_top+4, x+dir*3, bbox_bottom-8, obj_wall, 0, 0);
+				var movingwall_h_inst = instance_place(x+dir*2, y, obj_movingwall_h);
+				var movingwall_v_inst = instance_place(x+dir*2, y, obj_movingwall_v);
 				if (instance_exists(wall_inst) && !wall_inst.nopeck && !peck_wall) {
 					peck_wall = true;
 					vsp = 0;
@@ -312,6 +316,35 @@ function process_pecking() {
 					hsp = 0;
 					hsp_sustained_knockback = 0;
 			
+					peck_timer = 0;
+				}
+				if (instance_exists(movingwall_h_inst) && !movingwall_h_inst.nopeck && !peck_wall) {
+					peck_wall = true; //set state of pecking a wall to true
+					vsp = 0; //stop vert speed
+					
+					play_sound(snd_player_peck_wall);
+					
+					//x = movingwall_h_inst.x + -dir; //set x pos to x pos of moving block and "dig in" to block so when dir change the collision doesn't separate.
+					
+					hsp = movingwall_h_inst.hsp*movingwall_h_inst.dir;
+					//hsp = 0; //stop horizontal speed
+					hsp_sustained_knockback = 0;
+					
+					peck_timer = 0;
+				}
+				if (instance_exists(movingwall_v_inst) && !movingwall_v_inst.nopeck && !peck_wall) {
+					peck_wall = true;
+					vsp += movingwall_v_inst.vsp*movingwall_v_inst.dir;
+					
+					play_sound(snd_player_peck_wall);
+					
+					//if (bbox_top < movingwall_v_inst.bbox_top) {
+					//	approach(y, movingwall_v_inst.y, 1);
+					//}
+					
+					hsp = 0;
+					hsp_sustained_knockback = 0;
+					
 					peck_timer = 0;
 				}
 			}
@@ -358,7 +391,29 @@ function process_collision() {
 			hsp_final = 0;
 		}
 	}
+	
+	var movingwall_h_inst = instance_place(x, y+1, obj_movingwall_h); //check if movingwall below player
+	if (movingwall_h_inst) {
+		hsp += movingwall_h_inst.hsp*movingwall_h_inst.dir;
+	}
+	var movingwall_h_btm_inst = instance_place(x, y, obj_movingwall_h); //check if player collide with bottom of movingwall
+	if (movingwall_h_btm_inst && y < movingwall_h_btm_inst.bbox_bottom) {
+		vsp = 1;
+	}
+	var movingwall_v_inst = instance_place(x, y+1, obj_movingwall_v);
+	if (movingwall_v_inst) {
+		y = movingwall_v_inst.bbox_top + movingwall_v_inst.dir * 2;
+	}
+	var movingwall_v_btm_inst = instance_place(x, y, obj_movingwall_v);
+	if (movingwall_v_btm_inst && y > movingwall_v_btm_inst.bbox_bottom) {
+		vsp = 1;
+	}
+	
+	hsp_final = hsp + hsp_sustained_knockback;
+	
 	x += hsp_final;
+	
+	hsp = 0;
 
 
 	var v_wall = instance_place(x, y+vsp, obj_wall);
