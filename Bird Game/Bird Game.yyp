@@ -170,7 +170,6 @@
     {"id":{"name":"obj_wall_nopeck","path":"objects/obj_wall_nopeck/obj_wall_nopeck.yy",},"order":1,},
     {"id":{"name":"obj_enemy_fly","path":"objects/obj_enemy_fly/obj_enemy_fly.yy",},"order":5,},
     {"id":{"name":"spr_water_blast","path":"sprites/spr_water_blast/spr_water_blast.yy",},"order":4,},
-    {"id":{"name":"obj_win_zone","path":"objects/obj_win_zone/obj_win_zone.yy",},"order":2,},
     {"id":{"name":"obj_win_zone","path":"objects/obj_win_zone/obj_win_zone.yy",},"order":4,},
     {"id":{"name":"spr_movingwall_h","path":"sprites/spr_movingwall_h/spr_movingwall_h.yy",},"order":10,},
     {"id":{"name":"snd_noise","path":"sounds/snd_noise/snd_noise.yy",},"order":9,},
