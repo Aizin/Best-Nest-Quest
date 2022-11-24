@@ -1,13 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-image_yscale = -dir;
+image_xscale = dir;
 
-if (y > endy) {
+if (x > endx) {
 	dir = -1;
 }
-if (y < starty) {
+if (x < startx) {
 	dir = 1;
 }
 
-y += vsp*dir;
+x += hsp*dir;

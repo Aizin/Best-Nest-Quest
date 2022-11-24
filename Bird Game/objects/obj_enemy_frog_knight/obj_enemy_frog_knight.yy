@@ -10,8 +10,8 @@
   "visible": true,
   "managed": true,
   "spriteMaskId": {
-    "name": "spr_frog_knight_idle",
-    "path": "sprites/spr_frog_knight_idle/spr_frog_knight_idle.yy",
+    "name": "spr_frog_knight_mask",
+    "path": "sprites/spr_frog_knight_mask/spr_frog_knight_mask.yy",
   },
   "persistent": false,
   "parentObjectId": {
@@ -33,6 +33,7 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":2,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":7,"eventType":7,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],

@@ -3,7 +3,22 @@
 // Inherit the parent event
 event_inherited();
 
+if (debug_stop) {
+	instance_destroy();
+	instance_create_depth(x, y, depth, obj_room, {image_xscale: (bbox_right - bbox_left)/sprite_get_width(sprite_index), image_yscale: (bbox_bottom - bbox_top)/sprite_get_height(sprite_index)})
+	
+	if (instance_exists(obj_enemy_parent)) {
+		with (obj_enemy_parent) {
+			if (variable_struct_get(self, "calibrate_room") != undefined) {
+				calibrate_room();
+			}
+		}
+	}
+}
+
 wall_instances = [];
+
+boundry_kill = false;
 
 xdir = 1;
 ydir = 1;
@@ -14,10 +29,10 @@ y_goal = y;
 width = CW;
 height = CH;
 
-wait_timer = 60;
+wait_timer = 120;
 wait_finished = false;
 
-spd = 0.4;
+spd = 0.32;
 
 full_width = sprite_width;
 full_height = sprite_height;
@@ -29,45 +44,51 @@ function set_dims(w, h) {
 
 function enter_room() {
 	if (xdir == 1) {
-		x = bbox_left;
 		x_goal = bbox_right - width;
+		x = bbox_left;
 	} else {
-		x = bbox_right - width;
 		x_goal = bbox_left;
+		x = bbox_right - width;
+		
 	}
 	
 	if (ydir == 1) {
-		y = bbox_bottom - height;
 		y_goal = bbox_top;
+		y = bbox_bottom - height;
+		
 	} else {
-		y = bbox_top;
 		y_goal = bbox_bottom - height;
+		y = bbox_top;
+		
 	}
 	
 	set_dims(width, height);
 	
-	var w_top = instance_create_layer(x, y-16, "Walls", obj_wall_nopeck, 
+	var padding = 2;
+	
+	var w_top = instance_create_layer(x, y-32, "Walls", obj_wall_nopeck, 
 	{
 		image_xscale: width/16, 
-		ox:0, oy:-16
+		ox:0, oy:-32
 	});
-	var w_right = instance_create_layer(x + width, y, "Walls", obj_wall_nopeck, 
-	{
-		image_yscale: height/16,
-		ox: width, oy:0
-	});
-	var w_left = instance_create_layer(x-16, y, "Walls", obj_wall_nopeck, 
-	{
-		image_yscale: height/16,
-		ox: -16, oy:0
-	});
-	var w_bottom = instance_create_layer(x, y + height, "Walls", obj_death_zone, 
+	//var w_right = instance_create_layer(x + width, y, "Walls", obj_wall_nopeck, 
+	//{
+	//	image_yscale: height/16,
+	//	ox: width, oy:0
+	//});
+	//var w_left = instance_create_layer(x-16, y, "Walls", obj_wall_nopeck, 
+	//{
+	//	image_yscale: height/16,
+	//	ox: -16, oy:0
+	//});
+	instance_create_layer(x-16, y, "Walls", obj_wall_nopeck, {image_yscale: height/16+padding,});
+	var w_bottom = instance_create_layer(x, y + height+padding*16, "Walls", obj_death_zone, 
 	{
 		image_xscale: width/16, 
-		ox:0, oy:height
+		ox:0, oy:height+padding*16
 	})
 	
-	array_push(wall_instances, w_top, w_left, w_right, w_bottom);
+	array_push(wall_instances, w_top/*, w_left, w_right*/, w_bottom);
 }
 
 function exit_room() {
@@ -99,7 +120,6 @@ function step() {
 			alarm_set(0, wait_timer);
 		}
 	}
-
 	if (wait_finished) {
 		var x_prev = x;
 		var y_prev = y;

@@ -30,8 +30,6 @@ spinning = false;
 peck = false;
 peck_wall = false;
 
-xdig_in = 10;
-
 on_ground = true;
 
 dir = 1
@@ -66,8 +64,7 @@ invincible_timer = 145;
 knockback_vsp = 4;
 knockback_hsp = 4;
 
-transition_progress = 0;
-old_room = noone;
+init = false;
 
 // ##################################################
 #endregion
@@ -159,7 +156,8 @@ function process_movement() {
 	
 	
 	var v_wall = instance_place(x, y+1, obj_wall);
-	if (instance_exists(v_wall) && /**/v_wall.hsp == 0/**/ && (!v_wall.spinnable || (v_wall.spinnable && (!spinning)))) {
+	if (instance_exists(v_wall) && (!v_wall.spinnable || (v_wall.spinnable && (!spinning)))) {
+		
 		if (!on_ground) {
 			xscale = 1.5;
 			yscale = 0.5;
@@ -188,7 +186,7 @@ function process_movement() {
 	
 		// Apply gravity
 		vsp = approach(vsp, vm, g);
-		
+		if (vsp > vm) vsp = vm;
 		
 		
 		if (!spinning && can_glide) {
@@ -246,7 +244,7 @@ function process_movement() {
 function process_spin() {
 	spin_cooldown = approach(spin_cooldown, 0, 1);
 	
-	if (spinning && spin_cooldown == 0) {
+	if (spinning && spin_cooldown == 0 && vsp > 0) {
 		var spinnable_inst = instance_place(x, y+vsp, obj_spinnable);
 		if (instance_exists(spinnable_inst)) {
 	
@@ -376,20 +374,14 @@ function process_pecking() {
 
 function process_collision() {
 	var hsp_final = hsp + hsp_sustained_knockback + hsp_fade_knockback;
-	var h_wall = instance_place(x+hsp_final, y, obj_wall);
-	if (instance_exists(h_wall)) {
-		
-		if (h_wall.hsp != 0 && sign(x - h_wall.x) == sign(h_wall.hsp)) {
-				hsp_final = h_wall.hsp;
-		} else {
-			while (!place_meeting(x+sign(hsp_final), y, obj_wall)) {
-				x += sign(hsp_final);
-			}
-			hsp_sustained_knockback = 0;
-			hsp_fade_knockback = 0;
-			hsp = 0;
-			hsp_final = 0;
+	if (place_meeting(x+hsp_final, y, obj_wall)) {
+		while (!place_meeting(x+sign(hsp_final), y, obj_wall)) {
+			x += sign(hsp_final);
 		}
+		hsp_sustained_knockback = 0;
+		hsp_fade_knockback = 0;
+		hsp = 0;
+		hsp_final = 0;
 	}
 	
 	var movingwall_h_inst = instance_place(x, y+1, obj_movingwall_h); //check if movingwall below player
@@ -418,7 +410,7 @@ function process_collision() {
 
 	var v_wall = instance_place(x, y+vsp, obj_wall);
 		
-	if (instance_exists(v_wall) && /**/v_wall.hsp == 0/**/) {
+	if (instance_exists(v_wall)) {
 		
 		var collide = true;
 		
@@ -507,3 +499,4 @@ y = global.save_data[$ "respawn_y"];
 
 
 global.cur_room = instance_place(x,y,obj_room);
+

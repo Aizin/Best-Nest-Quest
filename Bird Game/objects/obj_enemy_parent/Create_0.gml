@@ -87,3 +87,7 @@ target = obj_player;
 
 
 room_inst = instance_place(x,y,obj_room);
+
+function calibrate_room() {
+	room_inst = instance_place(x,y,obj_room);
+}

@@ -2,8 +2,9 @@
 
 randomize();
 
-global.debug = true;
+global.debug = false;
 global.cur_room = noone;
+global.last_room = noone;
 
 global.transition_scroll_lock = false;
 
@@ -26,6 +27,8 @@ global_timer = 0;
 gp_axis_pressed_cooldown = 15;
 
 global.checkpoint_index = 0;
+
+global.stage_direction = 0;
 
 function get_input() {
 	global.key_right = keyboard_check(vk_right);

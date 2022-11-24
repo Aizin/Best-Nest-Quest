@@ -9,7 +9,7 @@
 event_inherited();
 
 y_amp = 32;
-timer = random_range(0, 2*pi);
+timer = 0;
 
 set_hp(1);
 

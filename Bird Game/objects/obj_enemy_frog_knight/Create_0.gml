@@ -14,7 +14,7 @@ vsp = 0;
 jump_spd = 5.75;
 grav = 0.27;
 
-spd = 0.75;
+spd = 1;
 
 range = 128;
 
@@ -22,9 +22,13 @@ cooldown_timer = 0;
 
 function peck_hit(dir) {
 	on_peck(dir);
-	if (state != 2) {
+	if ((state != 4 && state != 2) || dir == self.dir) {
 		vsp = -3;
 		hsp = 2*dir;
+		
+		if (state == 4 || state == 2) {
+			change_state(3);
+		}
 		
 		return damage(1);
 	} else {
@@ -34,7 +38,7 @@ function peck_hit(dir) {
 }
 
 function step() {
-	
+	image_xscale = dir;
 	
 	switch (state) {
 		
@@ -44,7 +48,7 @@ function step() {
 			if (cooldown_timer != 0) break;
 			
 			dir = sign(target.x - x);
-			if (distance_to_object(target) < range) {
+			if (distance_to_object(target) < range && target.y <= y+8) {
 				change_state(1);
 			}
 			break;
@@ -62,7 +66,7 @@ function step() {
 			break;
 	}
 	
-	if (state != 2) {
+	if (state != 4 && state != 2) {
 		vsp += grav;
 	}
 	
@@ -87,6 +91,7 @@ function step() {
 		vsp_final = 0;
 	}
 	y += vsp_final;
+	
 }
 
 function change_state(new_state) {
@@ -113,14 +118,20 @@ function change_state(new_state) {
 			break;
 		
 		case 2:
-			hsp = dir * spd;
+			hsp = 0;
 			vsp = 0;
-			sprite_index = spr_frog_knight_drill;
-			alarm_set(0, 50);
+			sprite_index = spr_frog_knight_drill_transition;
 			break;
 		
 		case 3:
 			sprite_index = spr_frog_knight_fall;
+			break;
+		
+		case 4:
+			hsp = dir * spd;
+			vsp = 0;
+			sprite_index = spr_frog_knight_drill;
+			alarm_set(0, 50);
 			break;
 	}
 }

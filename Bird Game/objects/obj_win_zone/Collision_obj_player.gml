@@ -21,7 +21,7 @@ if (instance_exists(obj_camera_follower)) {
 
 var t = instance_create_depth(0,0,-999999,obj_transition);
 t.transition_type = 1;
-t.room_to = rm_title;
+t.room_to = room_to;
 t.step_timer_stay = 100;
 
 music_set_gain(global.cur_music, 0, 1700)

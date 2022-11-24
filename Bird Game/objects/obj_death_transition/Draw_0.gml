@@ -24,16 +24,35 @@ surface_set_target(surf);
 	
 	var cp_x1 = 0;
 	var cp_x2 = room_width;
-	if (instance_exists(obj_checkpoint)) {
-		with (obj_checkpoint) {
-			if (index == global.checkpoint_index) {
-				cp_x1 = x;
-			} else if (index == global.checkpoint_index + 1) {
-				cp_x2 = x;
+	var px = global.player_x;
+	
+	if (global.stage_direction == 0) {
+		if (instance_exists(obj_checkpoint)) {
+		
+			with (obj_checkpoint) {
+				if (index == global.checkpoint_index) {
+					cp_x1 = x;
+				} else if (index == global.checkpoint_index + 1) {
+					cp_x2 = x;
+				}
+			}
+		}
+	} else {
+		px = global.player_y;
+		cp_x1 = room_height;
+		cp_x2 = 0;
+		
+		if (instance_exists(obj_checkpoint)) {
+			with (obj_checkpoint) {
+				if (index == global.checkpoint_index) {
+					cp_x1 = y;
+				} else if (index == global.checkpoint_index + 1) {
+					cp_x2 = y;
+				}
 			}
 		}
 	}
-	var cp_progress = (global.player_x - cp_x1) / (cp_x2 - cp_x1);
+	var cp_progress = (px - cp_x1) / (cp_x2 - cp_x1);
 	
 	for (var i = 0; i < steps-1; i ++) {
 		draw_sprite_stretched(spr_level_progress_line, 0, xx + step_width*i, yy, step_width-1, h);

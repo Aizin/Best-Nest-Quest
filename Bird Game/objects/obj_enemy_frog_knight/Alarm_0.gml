@@ -1,6 +1,6 @@
 /// @desc
 
-if (state == 2) change_state(3);
+if (state == 4) change_state(3);
 
 
 

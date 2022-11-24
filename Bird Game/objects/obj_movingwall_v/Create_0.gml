@@ -4,8 +4,8 @@
 // Inherit the parent event
 event_inherited();
 
-starty = 543;
-endy = 607;
-vsp = 1;
+startx = 96;
+endx = 208;
+hsp = 1;
 dir = 1;
-image_yscale = 1;
+image_xscale = 1;

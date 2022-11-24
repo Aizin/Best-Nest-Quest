@@ -23,21 +23,7 @@ state = 0; // (0, 1, 2) | (idle, blast_ready, blast)
 
 blast_inst = noone;
 
-function step() {
-	switch (state) {
-		case 0:
-			
-			break;
-		
-		case 1:
-			
-			break;
-			
-		case 2:
-		
-			break;
-	}
-}
+
 
 function change_state(s) {
 	state = s;
@@ -55,7 +41,7 @@ function change_state(s) {
 		case 2:
 			sprite_index = spr_water_turtle_blast;
 			
-			blast_inst = instance_create_depth(x, bbox_top, depth-5, obj_water_blast);
+			blast_inst = instance_create_depth(x, bbox_top+2, depth+5, obj_water_blast);
 			blast_inst.parent = self;
 			break;
 	}

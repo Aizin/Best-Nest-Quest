@@ -1,10 +1,17 @@
 /// @desc
 
+if (!init) {
+	init = true;
+	if (instance_exists(global.cur_room)) {
+		global.cur_room.enter_room();
+	}
+}
+
 if (global.transition_scroll_lock) {
 	transition_progress ++;
 	
 	if (transition_progress < 16) {
-		x += sign(hsp);
+		x += dir;
 	}
 	return;
 }
@@ -18,7 +25,16 @@ if (global.player_frozen) return;
 process_movement();
 process_animation();
 
-
+var trigger_inst = instance_place(x, y, obj_trigger);
+if (instance_exists(trigger_inst)) {
+	with (trigger_inst) {
+		trigger();
+		
+		if (single_use) {
+			instance_destroy();
+		}
+	}
+}
 
 if (place_meeting(x, y, obj_death_zone)) {
 	die();
