@@ -17,6 +17,7 @@ switch (state) {
 		break;
 	
 	case 1:
+		transition_type = 0;
 		if (alarm[0] == -1) {
 			
 			alarm_set(0, step_timer_stay);

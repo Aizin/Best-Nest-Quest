@@ -5,7 +5,6 @@ if (instance_exists(room_inst) && room_inst.active) {
 	global.last_room = room_inst;
 }
 
-
 if (!instance_exists(room_inst) && ((instance_exists(global.last_room) && global.last_room.boundry_kill) || !instance_exists(global.last_room))) {
 	if (alarm[0] == -1) {
 		alarm_set(0, 15);

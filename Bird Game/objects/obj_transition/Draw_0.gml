@@ -34,7 +34,6 @@ switch (transition_type) {
 }
 
 
-
 draw_set_color(c_white);
 
 

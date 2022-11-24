@@ -6,7 +6,6 @@ alpha = 0;
 
 global.player_frozen = true;
 
-
 step_size = 16;
 step_timer_stay = 20;
 
@@ -20,7 +19,7 @@ step_max = ceil(CW / step_size);
 
 room_to = -1;
 
-depth -= 1000;
+depth -= 99999;
 
 transition_type = 0;
 

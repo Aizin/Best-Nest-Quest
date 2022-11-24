@@ -3,7 +3,7 @@
 // Inherit the parent event
 event_inherited();
 
-if (debug_stop) {
+if (debug_stop && global.debug) {
 	instance_destroy();
 	instance_create_depth(x, y, depth, obj_room, {image_xscale: (bbox_right - bbox_left)/sprite_get_width(sprite_index), image_yscale: (bbox_bottom - bbox_top)/sprite_get_height(sprite_index)})
 	

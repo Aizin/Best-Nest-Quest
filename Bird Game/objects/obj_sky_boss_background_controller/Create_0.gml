@@ -10,6 +10,7 @@ register_layer([spr_bg_sky_clouds_1, spr_bg_sky_clouds_1_night], 1);
 
 play_music(snd_mus_sky);
 
+
 set_stage_direction("vertical");
 
 image_speed = 0.08;

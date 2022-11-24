@@ -23,11 +23,11 @@ function start_game() {
 		
 		music_set_gain(global.cur_music, 0, 1500);
 		
-		//if (global.debug) {
-		//	set_step_size(64);
-		//	step_timer_stay = 1;
-		//	timer_step = 1;
-		//}
+		if (global.debug) {
+			set_step_size(64);
+			step_timer_stay = 1;
+			timer_step = 1;
+		}
 	}
 }
 

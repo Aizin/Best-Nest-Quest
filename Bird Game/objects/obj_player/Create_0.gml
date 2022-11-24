@@ -154,34 +154,45 @@ function process_movement() {
 	}
 	
 	
-	
+	// Get wall instance below player
 	var v_wall = instance_place(x, y+1, obj_wall);
+	
+	// If we are on the ground
 	if (instance_exists(v_wall) && (!v_wall.spinnable || (v_wall.spinnable && (!spinning)))) {
 		
+		// If the previous frame we weren't on the ground
 		if (!on_ground) {
+			// Squash
 			xscale = 1.5;
 			yscale = 0.5;
-			
 		}
+		
+		// Set flag
 		on_ground = true;
 		
+		// Reset state
 		glide_counter = 0;
 		spin_ready = false;
 		gliding = false;
 		spinning = false;
 		
+		// Reset jump buffer time
 		jump_buffer = jump_buffer_timer;
 	} else {
 		
+		// Set flag
 		on_ground = false;
 		
+		// Determine if we are gliding
 		gliding = !spinning && global.key_jump && vsp > 0 && can_glide;
 		
+		// Determine gravity
 		var g = gliding ? glide_grav : grav;
 		if (peck_wall) {
 			g = 0;
 		}
 		
+		// Determine max velocity
 		var vm = gliding ? glide_vsp_max : vsp_max;
 	
 		// Apply gravity
@@ -499,4 +510,4 @@ y = global.save_data[$ "respawn_y"];
 
 
 global.cur_room = instance_place(x,y,obj_room);
-
+global.last_room = noone;

@@ -19,6 +19,7 @@ global.cur_music = -1;
 global.cur_music_soundid = -1;
 function play_music(soundid) {
 	if (audio_is_playing(soundid)) {
+		music_set_gain(global.cur_music, 1, 250);
 		return;
 	}
 	
