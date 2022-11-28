@@ -10,6 +10,8 @@ mus_playing = false;
 
 intro_step = 0;
 
+global.checkpoint_index = 0;
+
 
 function start_game() {
 	active = false;
@@ -19,7 +21,7 @@ function start_game() {
 	save_game();
 	
 	with (instance_create_depth(0,0,-9999,obj_transition)) {
-		room_to = rm_game_forest;
+		room_to = rm_game_sky;
 		
 		music_set_gain(global.cur_music, 0, 1500);
 		
